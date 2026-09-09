@@ -133,6 +133,7 @@ h1 { margin: 0; color: var(--ink); font-size: clamp(2.7rem, 9vw, 4.8rem); font-w
 .message p:nth-child(5) { animation-delay: .84s; }
 .message p:nth-child(6) { animation-delay: .98s; margin-bottom: 0; }
 .celebrate { display: inline-block; margin-left: .25rem; font-size: 1rem; animation: tiny-pop .7s 1.25s ease both; }
+.message-emoji { display: inline-block; margin-left: .35rem; font-size: .98em; transform: translateY(.05em); }
 
 .letter-footer { display: flex; align-items: center; justify-content: center; gap: .8rem; margin-top: 3rem; color: var(--muted); }
 .letter-footer p { margin: 0; font: .7rem/1.5 'Noto Sans SC', 'Microsoft YaHei', sans-serif; letter-spacing: .12em; white-space: nowrap; }

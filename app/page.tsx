@@ -114,7 +114,11 @@ export default function Home() {
 
           <article className="message">
             <p>胡老师，又是一年教师节，首先祝您教师节快乐！<span className="celebrate" aria-label="庆祝">🎉</span></p>
-            {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+            <p>一直都非常感激您没有嫌弃我的学历，愿意收下我，我也很庆幸能够成为您的学生。<span className="message-emoji" aria-label="向日葵">🌻</span></p>
+            <p>刚开始接触科研的时候，我其实是比较迷茫的，犹如一只小船刚刚驶进汪洋大海，不知道方向在哪里。庆幸的是：一路上有您的包容和指导，让我慢慢找到了方向，也坚定了做科研的决心。<span className="message-emoji" aria-label="星星">✨</span></p>
+            <p>今后的日子里，我将静心沉气，积极学习，主动思考，精益求精。争取有一些成就，不辜负您的期许，也为 AgriMind 课题组争光。<span className="message-emoji" aria-label="书本">📚</span></p>
+            <p>我也坚信，在您的带领下，在咱们课题组成员的共同努力下，AgriMind 课题组必将走向辉煌。<span className="message-emoji" aria-label="嫩芽">🌱</span></p>
+            <p>最后，再次衷心祝愿：恩师，生活顺遂，万事胜意，工作顺心，学术长青！<span className="message-emoji" aria-label="闪耀的星星">🌟</span></p>
           </article>
 
           <footer className="letter-footer">
