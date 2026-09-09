@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fff5e4" />
+    <title>给胡老师的教师节祝福</title>
+    <style>
+      :root { --ink:#4b3326; --muted:#94755e; --accent:#c85b35; --paper:#fff5e4; --line:rgba(174,119,61,.24); }
+      * { box-sizing:border-box; }
+      body { margin:0; color:var(--ink); background:var(--paper); font-family:"Noto Serif SC","Songti SC","STSong",Georgia,serif; }
+      .page { position:relative; min-height:100vh; overflow:hidden; padding:5.7rem 1.35rem 3rem; background:radial-gradient(circle at 77% 5%,rgba(244,188,69,.29),transparent 26rem),radial-gradient(circle at 8% 88%,rgba(229,127,74,.17),transparent 28rem),linear-gradient(135deg,rgba(255,255,255,.24),transparent 48%),var(--paper); }
+      .page:after { content:""; position:absolute; inset:0; pointer-events:none; opacity:.18; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E"); mix-blend-mode:multiply; }
+      .music { position:absolute; z-index:3; top:1.4rem; right:clamp(1.25rem,5vw,4.5rem); display:flex; align-items:center; gap:.55rem; border:1px solid var(--line); border-radius:999px; padding:.6rem .85rem .6rem .7rem; color:var(--muted); background:rgba(255,255,255,.5); cursor:pointer; font:.75rem/1 "Microsoft YaHei",sans-serif; letter-spacing:.08em; }
+      .bars { display:flex; align-items:end; gap:2px; width:16px; height:14px; } .bars i { width:2px; height:7px; border-radius:4px; background:currentColor; } .bars i:nth-child(2){height:11px}.bars i:nth-child(3){height:14px}.bars i:nth-child(4){height:8px}.playing i{animation:eq .8s ease-in-out infinite alternate}.playing i:nth-child(2){animation-delay:-.35s}.playing i:nth-child(3){animation-delay:-.6s}.playing i:nth-child(4){animation-delay:-.2s}
+      .flower { position:absolute; z-index:0; width:clamp(12rem,22vw,19rem); pointer-events:none; mix-blend-mode:screen; filter:saturate(1.08) brightness(1.05); opacity:.92; animation:sway 10s ease-in-out infinite; } .flower.left{left:clamp(-5rem,-2vw,-1.2rem);bottom:4%;transform:rotate(-12deg)} .flower.right{right:clamp(-7rem,-4vw,-2rem);top:11%;width:clamp(10rem,17vw,15rem);transform:rotate(18deg) scale(.76);opacity:.63;animation-delay:-4s}
+      .stamp { position:absolute; left:clamp(1.25rem,4vw,3.6rem); top:50%; z-index:1; display:flex; flex-direction:column; align-items:center; gap:.85rem; color:rgba(148,117,94,.72); transform:translateY(-50%); } .stamp span{writing-mode:vertical-rl;font:.58rem/1 "Microsoft YaHei",sans-serif;letter-spacing:.19em}.stamp strong{color:var(--accent);font:500 1rem/1.05 Georgia,serif;text-align:center}
+      .card { position:relative; z-index:1; width:min(100%,760px); margin:0 auto; padding:clamp(2rem,6vw,4.4rem) clamp(1.4rem,8vw,6.2rem) clamp(2.1rem,5vw,3.5rem); border:1px solid var(--line); background:rgba(255,251,241,.9); box-shadow:0 24px 60px rgba(126,75,33,.13),inset 0 0 0 7px rgba(255,255,255,.36); }
+      .card:before,.card:after{content:"";position:absolute;z-index:-1;inset:1.3rem -.7rem -.7rem 1.3rem;border:1px solid rgba(174,119,61,.16)} .card:after{inset:-.65rem .9rem 1rem -.55rem;border-color:rgba(200,91,53,.1);transform:rotate(.3deg)}
+      .corner{position:absolute;color:rgba(200,91,53,.42);font-size:.9rem}.corner.one{top:1.15rem;right:1.35rem}.corner.two{bottom:1rem;left:1.35rem;transform:rotate(180deg)}
+      .topline{display:flex;align-items:center;justify-content:center;gap:1.05rem;margin-bottom:1.8rem}.topline i{width:min(18vw,94px);height:1px;background:var(--line)}.seal{display:grid;place-items:center;width:2.3rem;height:2.3rem;border:1px solid rgba(200,91,53,.45);color:var(--accent);font-size:1.15rem;transform:rotate(-7deg)}
+      .eyebrow{margin:0 0 1.35rem;color:var(--muted);font:.67rem/1 "Microsoft YaHei",sans-serif;letter-spacing:.22em;text-align:center;text-transform:uppercase}.title{margin:0;color:var(--ink);font-size:clamp(2.7rem,9vw,4.8rem);font-weight:500;letter-spacing:.16em;line-height:1.18;text-align:center;text-indent:.16em}.greeting{margin:1.25rem 0 0;color:var(--accent);font-size:clamp(1.35rem,4vw,1.7rem);letter-spacing:.16em;text-align:center}.context{text-align:center;margin-top:1rem;color:var(--muted);font:.66rem/1 "Microsoft YaHei",sans-serif;letter-spacing:.12em}.context b{padding:0 .65rem;color:var(--accent);font-weight:400;font-size:1rem}.divider{display:flex;align-items:center;gap:.8rem;width:min(100%,300px);margin:2.4rem auto 2.1rem;color:var(--accent);font-size:.7rem}.divider:before,.divider:after{content:"";flex:1;height:1px;background:var(--line)}
+      .message{font-size:clamp(1rem,2.3vw,1.1rem);line-height:2.12;letter-spacing:.035em}.message p{margin:0 0 1.1rem}.celebrate{margin-left:.25rem;font-size:1rem}.footer{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-top:3rem;color:var(--muted)}.footer span{width:2.5rem;height:1px;background:var(--line)}.footer p{margin:0;font:.7rem/1.5 "Microsoft YaHei",sans-serif;letter-spacing:.12em;white-space:nowrap}.hint{position:relative;z-index:1;margin:2.2rem auto 0;text-align:center;color:rgba(148,117,94,.75);font:.7rem/1.5 "Microsoft YaHei",sans-serif;letter-spacing:.1em}
+      @keyframes eq{from{transform:scaleY(.45)}to{transform:scaleY(1)}} @keyframes sway{0%,100%{margin-top:0}50%{margin-top:8px}}
+      @media(max-width:560px){.stamp{display:none}.flower{width:12rem;opacity:.64}.flower.left{left:-5.4rem;bottom:1%}.flower.right{right:-5.4rem;top:8%}.card{padding-left:1.4rem;padding-right:1.4rem}.card:before{inset:.7rem -.35rem -.35rem .7rem}.card:after{inset:-.3rem .4rem .5rem -.25rem}.message{line-height:2}.footer{gap:.45rem}.footer span{width:1.5rem}.footer p{font-size:.64rem;letter-spacing:.06em}}
+      @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <img class="flower left" src="sunflowers.png" alt="" aria-hidden="true" /><img class="flower right" src="sunflowers.png" alt="" aria-hidden="true" />
+      <button class="music" id="music" type="button" aria-label="开启背景音乐"><span class="bars"><i></i><i></i><i></i><i></i></span><span id="musicText">开启音乐</span></button>
+      <div class="stamp" aria-hidden="true"><span>TEACHER'S DAY</span><strong>09<br>10</strong></div>
+      <section class="card" aria-labelledby="title">
+        <span class="corner one" aria-hidden="true">✦</span><span class="corner two" aria-hidden="true">✦</span>
+        <div class="topline" aria-hidden="true"><i></i><span class="seal">师</span><i></i></div>
+        <p class="eyebrow">A note of gratitude · 2026.09.10</p><h1 class="title" id="title">教师节快乐</h1><p class="greeting">致 胡老师</p>
+        <p class="context">一封感谢信 <b>·</b> AgriMind 课题组</p><div class="divider" aria-hidden="true">✦</div>
+        <article class="message">
+          <p>胡老师，又是一年教师节，首先祝您教师节快乐！<span class="celebrate">🎉</span></p>
+          <p>一直都非常感激您没有嫌弃我的学历，愿意收下我，我也很庆幸能够成为您的学生。</p>
+          <p>刚开始接触科研的时候，我其实是比较迷茫的，犹如一只小船刚刚驶进汪洋大海，不知道方向在哪里。庆幸的是：一路上有您的包容和指导，让我慢慢找到了方向，也坚定了做科研的决心。</p>
+          <p>今后的日子里，我将静心沉气，积极学习，主动思考，精益求精。争取有一些成就，不辜负您的期许，也为 AgriMind 课题组争光。</p>
+          <p>我也坚信，在您的带领下，在咱们课题组成员的共同努力下，AgriMind 课题组必将走向辉煌。</p>
+          <p>最后，再次衷心祝愿：恩师，生活顺遂，万事胜意，工作顺心，学术长青！</p>
+        </article>
+        <footer class="footer"><span></span><p>献给每一位点亮过他人远方的老师</p><span></span></footer>
+      </section>
+      <p class="hint">轻触右上角，听一段温柔的祝福</p>
+    </main>
+    <script>
+      const button = document.querySelector('#music'); const text = document.querySelector('#musicText'); const bars = document.querySelector('.bars'); let ctx, timer, index = 0;
+      const notes = [261.63,329.63,392,523.25,392,329.63,293.66,392];
+      function start(){ const C = window.AudioContext || window.webkitAudioContext; if(!C)return; ctx = new C(); bars.classList.add('playing'); text.textContent='音乐播放中'; button.setAttribute('aria-label','关闭背景音乐'); function note(){if(ctx.state==='closed')return;const now=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=notes[index++%notes.length];g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(.035,now+.12);g.gain.exponentialRampToValueAtTime(.0001,now+2.2);o.connect(g).connect(ctx.destination);o.start(now);o.stop(now+2.25);timer=setTimeout(note,1600)} note();}
+      function stop(){clearTimeout(timer);ctx?.close();ctx=null;bars.classList.remove('playing');text.textContent='开启音乐';button.setAttribute('aria-label','开启背景音乐')}
+      button.addEventListener('click',()=>ctx?stop():start());
+    </script>
+  </body>
+</html>
