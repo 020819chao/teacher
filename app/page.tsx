@@ -2,6 +2,14 @@
 
 import { useRef, useState } from 'react';
 
+const paragraphs = [
+  <>一直都非常感激您没有嫌弃我的学历，愿意收下我，我也很庆幸能够成为您的学生。</>,
+  <>刚开始接触科研的时候，我其实是比较迷茫的，犹如一只小船刚刚驶进汪洋大海，不知道方向在哪里。庆幸的是：一路上有您的包容和指导，让我慢慢找到了方向，也坚定了做科研的决心。</>,
+  <>今后的日子里，我将静心沉气，积极学习，主动思考，精益求精。争取有一些成就，不辜负您的期许，也为 AgriMind 课题组争光。</>,
+  <>我也坚信，在您的带领下，在咱们课题组成员的共同努力下，AgriMind 课题组必将走向辉煌。</>,
+  <>最后，再次衷心祝愿：恩师，生活顺遂，万事胜意，工作顺心，学术长青！</>,
+];
+
 function MusicIcon({ playing }: { playing: boolean }) {
   return (
     <span className={playing ? 'music-icon music-icon-playing' : 'music-icon'} aria-hidden="true">
@@ -105,23 +113,23 @@ export default function Home() {
           <div className="divider" aria-hidden="true"><span>✦</span></div>
 
           <article className="message">
-            <p>胡老师，又是一年教师节，首先祝您教师节快乐！</p>
-            <p>一直都非常感激您没有嫌弃我的学历，愿意收下我，我也很庆幸能够成为您的学生。<span className="poem-note">“新竹高于旧竹枝，全凭老干为扶持。”<em>——郑燮《新竹》</em></span></p>
-            <p>刚开始接触科研的时候，我其实是比较迷茫的，犹如一只小船刚刚驶进汪洋大海，不知道方向在哪里。庆幸的是：一路上有您的包容和指导，让我慢慢找到了方向，也坚定了做科研的决心。<span className="poem-note">“随风潜入夜，润物细无声。”<em>——杜甫《春夜喜雨》</em></span></p>
-            <p>今后的日子里，我将静心沉气，积极学习，主动思考，精益求精。争取有一些成就，不辜负您的期许，也为 AgriMind 课题组争光。<span className="poem-note">“问渠那得清如许？为有源头活水来。”<em>——朱熹《观书有感》</em></span></p>
-            <p>我也坚信，在您的带领下，在咱们课题组成员的共同努力下，AgriMind 课题组必将走向辉煌。<span className="poem-note">“令公桃李满天下，何用堂前更种花。”<em>——白居易《奉和令公绿野堂种花》</em></span></p>
-            <p>最后，再次衷心祝愿：恩师，生活顺遂，万事胜意，工作顺心，学术长青！<span className="poem-note">“采得百花成蜜后，为谁辛苦为谁甜？”<em>——罗隐《蜂》</em></span></p>
+            <p>胡老师，又是一年教师节，首先祝您教师节快乐！<span className="celebrate" aria-label="庆祝">🎉</span></p>
+            <p>一直都非常感激您没有嫌弃我的学历，愿意收下我，我也很庆幸能够成为您的学生。<span className="message-emoji" aria-label="向日葵">🌻</span></p>
+            <p>刚开始接触科研的时候，我其实是比较迷茫的，犹如一只小船刚刚驶进汪洋大海，不知道方向在哪里。庆幸的是：一路上有您的包容和指导，让我慢慢找到了方向，也坚定了做科研的决心。<span className="message-emoji" aria-label="星星">✨</span></p>
+            <p>今后的日子里，我将静心沉气，积极学习，主动思考，精益求精。争取有一些成就，不辜负您的期许，也为 AgriMind 课题组争光。<span className="message-emoji" aria-label="书本">📚</span></p>
+            <p>我也坚信，在您的带领下，在咱们课题组成员的共同努力下，AgriMind 课题组必将走向辉煌。<span className="message-emoji" aria-label="嫩芽">🌱</span></p>
+            <p>最后，再次衷心祝愿：恩师，生活顺遂，万事胜意，工作顺心，学术长青！<span className="message-emoji" aria-label="闪耀的星星">🌟</span></p>
           </article>
 
           <footer className="letter-footer">
             <span className="footer-line" />
-            <p>献给每一位点亮过他人远方的老师</p>
+            <p>落红不是无情物，化作春泥更护花。</p>
             <span className="footer-line" />
           </footer>
         </div>
       </section>
 
-      <p className="hint">轻触右上角，听一段温柔的祝福</p>
+      <p className="hint">此曲只应天上有，人间能得几回闻。</p>
     </main>
   );
 }
