@@ -28,8 +28,12 @@ export default function Home() {
   useEffect(() => {
     const element = audio.current;
     if (!element) return;
-    element.volume = 0.16;
+    element.volume = 0.3;
     const syncPlaying = () => setPlaying(!element.paused);
+    const tryAutoplay = () => {
+      if (!element.paused) return;
+      element.play().then(syncPlaying).catch(() => setPlaying(false));
+    };
     const resumeFromInteraction = (event: Event) => {
       const button = document.querySelector('.music-control');
       if (button?.contains(event.target as Node)) return;
@@ -38,9 +42,11 @@ export default function Home() {
     element.addEventListener('play', syncPlaying);
     element.addEventListener('pause', syncPlaying);
     element.addEventListener('ended', syncPlaying);
+    element.addEventListener('loadedmetadata', tryAutoplay);
+    element.addEventListener('canplay', tryAutoplay);
     document.addEventListener('pointerdown', resumeFromInteraction, { once: true });
     document.addEventListener('keydown', resumeFromInteraction, { once: true });
-    element.play().catch(() => setPlaying(false));
+    tryAutoplay();
     return () => {
       element.pause();
       document.removeEventListener('pointerdown', resumeFromInteraction);
@@ -48,6 +54,8 @@ export default function Home() {
       element.removeEventListener('play', syncPlaying);
       element.removeEventListener('pause', syncPlaying);
       element.removeEventListener('ended', syncPlaying);
+      element.removeEventListener('loadedmetadata', tryAutoplay);
+      element.removeEventListener('canplay', tryAutoplay);
     };
   }, []);
 

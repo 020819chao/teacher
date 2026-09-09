@@ -48,12 +48,12 @@
       </section>
     </main>
     <script>
-      const button = document.querySelector('#music'); const text = document.querySelector('#musicText'); const bars = document.querySelector('.bars'); const audio = document.querySelector('#audio'); audio.volume = .16;
+      const button = document.querySelector('#music'); const text = document.querySelector('#musicText'); const bars = document.querySelector('.bars'); const audio = document.querySelector('#audio'); audio.volume = .3;
       function sync(){ const on = !audio.paused; bars.classList.toggle('playing', on); text.textContent = on ? '音乐播放中' : '开启音乐'; button.setAttribute('aria-label', on ? '关闭背景音乐' : '开启背景音乐'); }
-      function start(){ audio.play().then(sync).catch(sync); }
+      function start(){ if(!audio.paused){sync();return;} audio.play().then(sync).catch(sync); }
       function stop(){ audio.pause(); sync(); }
       function resumeFromInteraction(event){ if(button.contains(event.target)) return; start(); }
-      audio.addEventListener('play', sync); audio.addEventListener('pause', sync); audio.addEventListener('ended', sync); button.addEventListener('click',()=>audio.paused?start():stop()); document.addEventListener('pointerdown', resumeFromInteraction, {once:true}); document.addEventListener('keydown', resumeFromInteraction, {once:true}); window.addEventListener('load', start); start();
+      audio.addEventListener('play', sync); audio.addEventListener('pause', sync); audio.addEventListener('ended', sync); audio.addEventListener('loadedmetadata', start); audio.addEventListener('canplay', start); button.addEventListener('click',()=>audio.paused?start():stop()); document.addEventListener('pointerdown', resumeFromInteraction, {once:true}); document.addEventListener('keydown', resumeFromInteraction, {once:true}); window.addEventListener('load', start); start();
     </script>
   </body>
 </html>
