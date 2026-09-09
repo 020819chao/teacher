@@ -129,7 +129,6 @@ export default function Home() {
         </div>
       </section>
 
-      <p className="hint">此曲只应天上有，人间能得几回闻。</p>
     </main>
   );
 }
