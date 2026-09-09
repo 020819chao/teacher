@@ -76,6 +76,8 @@ export default function Home() {
       <div className="ambient-glow ambient-glow-one" aria-hidden="true" />
       <div className="ambient-glow ambient-glow-two" aria-hidden="true" />
       <div className="grain" aria-hidden="true" />
+      <img className="sunflower-art sunflower-art-left" src="/sunflowers.png" alt="" aria-hidden="true" />
+      <img className="sunflower-art sunflower-art-right" src="/sunflowers.png" alt="" aria-hidden="true" />
 
       <button className="music-control" type="button" onClick={toggleMusic} aria-label={playing ? '关闭背景音乐' : '开启背景音乐'}>
         <MusicIcon playing={playing} />
