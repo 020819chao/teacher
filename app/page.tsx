@@ -28,14 +28,23 @@ export default function Home() {
   useEffect(() => {
     const element = audio.current;
     if (!element) return;
-    element.volume = 0.12;
+    element.volume = 0.16;
     const syncPlaying = () => setPlaying(!element.paused);
+    const resumeFromInteraction = (event: Event) => {
+      const button = document.querySelector('.music-control');
+      if (button?.contains(event.target as Node)) return;
+      element.play().catch(() => setPlaying(false));
+    };
     element.addEventListener('play', syncPlaying);
     element.addEventListener('pause', syncPlaying);
     element.addEventListener('ended', syncPlaying);
+    document.addEventListener('pointerdown', resumeFromInteraction, { once: true });
+    document.addEventListener('keydown', resumeFromInteraction, { once: true });
     element.play().catch(() => setPlaying(false));
     return () => {
       element.pause();
+      document.removeEventListener('pointerdown', resumeFromInteraction);
+      document.removeEventListener('keydown', resumeFromInteraction);
       element.removeEventListener('play', syncPlaying);
       element.removeEventListener('pause', syncPlaying);
       element.removeEventListener('ended', syncPlaying);
