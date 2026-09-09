@@ -82,29 +82,45 @@ export default function Home() {
         <span>{playing ? '音乐播放中' : '开启音乐'}</span>
       </button>
 
+      <div className="page-stamp" aria-hidden="true">
+        <span>TEACHER'S DAY</span>
+        <strong>09<br />10</strong>
+      </div>
+
       <section className="letter" aria-labelledby="page-title">
-        <div className="letter-topline" aria-hidden="true">
-          <span />
-          <span className="seal">师</span>
-          <span />
+        <div className="letter-inner">
+          <div className="letter-corner corner-top" aria-hidden="true">✦</div>
+          <div className="letter-corner corner-bottom" aria-hidden="true">✦</div>
+
+          <div className="letter-topline" aria-hidden="true">
+            <span />
+            <span className="seal">师</span>
+            <span />
+          </div>
+
+          <p className="eyebrow">A note of gratitude · 2026.09.10</p>
+          <h1 id="page-title">教师节快乐</h1>
+          <p className="greeting">致 胡老师</p>
+
+          <div className="context-row" aria-label="祝福来源">
+            <span>一封感谢信</span>
+            <span className="context-dot">·</span>
+            <span>AgriMind 课题组</span>
+          </div>
+
+          <div className="divider" aria-hidden="true"><span>✦</span></div>
+
+          <article className="message">
+            <p>胡老师，又是一年教师节，首先祝您教师节快乐！<span className="celebrate" aria-label="庆祝">🎉</span></p>
+            {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
+          </article>
+
+          <footer className="letter-footer">
+            <span className="footer-line" />
+            <p>献给每一位点亮过他人远方的老师</p>
+            <span className="footer-line" />
+          </footer>
         </div>
-
-        <p className="eyebrow">A note of gratitude · 2026.09.10</p>
-        <h1 id="page-title">教师节快乐</h1>
-        <p className="greeting">致 胡老师</p>
-
-        <div className="divider" aria-hidden="true"><span>✦</span></div>
-
-        <article className="message">
-          <p>胡老师，又是一年教师节，首先祝您教师节快乐！<span className="celebrate" aria-label="庆祝">🎉</span></p>
-          {paragraphs.map((paragraph, index) => <p key={index}>{paragraph}</p>)}
-        </article>
-
-        <footer className="letter-footer">
-          <span className="footer-line" />
-          <p>献给每一位点亮过他人远方的老师</p>
-          <span className="footer-line" />
-        </footer>
       </section>
 
       <p className="hint">轻触右上角，听一段温柔的祝福</p>
