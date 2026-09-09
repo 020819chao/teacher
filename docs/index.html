@@ -29,7 +29,7 @@
   <body>
     <main class="page">
       <img class="flower left" src="sunflowers.png" alt="" aria-hidden="true" /><img class="flower right" src="sunflowers.png" alt="" aria-hidden="true" />
-      <button class="music" id="music" type="button" aria-label="开启背景音乐"><span class="bars"><i></i><i></i><i></i><i></i></span><span id="musicText">开启音乐</span></button>
+      <button class="music" id="music" type="button" aria-label="开启背景音乐"><span class="bars"><i></i><i></i><i></i><i></i></span><span id="musicText">开启音乐</span></button><audio id="audio" src="una-mattina.mp3" autoplay loop preload="auto"></audio>
       <div class="stamp" aria-hidden="true"><span>TEACHER'S DAY</span><strong>09<br>10</strong></div>
       <section class="card" aria-labelledby="title">
         <span class="corner one" aria-hidden="true">✦</span><span class="corner two" aria-hidden="true">✦</span>
@@ -48,11 +48,11 @@
       </section>
     </main>
     <script>
-      const button = document.querySelector('#music'); const text = document.querySelector('#musicText'); const bars = document.querySelector('.bars'); let ctx, timer, index = 0;
-      const notes = [261.63,329.63,392,523.25,392,329.63,293.66,392];
-      function start(){ const C = window.AudioContext || window.webkitAudioContext; if(!C)return; ctx = new C(); bars.classList.add('playing'); text.textContent='音乐播放中'; button.setAttribute('aria-label','关闭背景音乐'); function note(){if(ctx.state==='closed')return;const now=ctx.currentTime,o=ctx.createOscillator(),g=ctx.createGain();o.type='sine';o.frequency.value=notes[index++%notes.length];g.gain.setValueAtTime(.0001,now);g.gain.exponentialRampToValueAtTime(.035,now+.12);g.gain.exponentialRampToValueAtTime(.0001,now+2.2);o.connect(g).connect(ctx.destination);o.start(now);o.stop(now+2.25);timer=setTimeout(note,1600)} note();}
-      function stop(){clearTimeout(timer);ctx?.close();ctx=null;bars.classList.remove('playing');text.textContent='开启音乐';button.setAttribute('aria-label','开启背景音乐')}
-      button.addEventListener('click',()=>ctx?stop():start());
+      const button = document.querySelector('#music'); const text = document.querySelector('#musicText'); const bars = document.querySelector('.bars'); const audio = document.querySelector('#audio'); audio.volume = .12;
+      function sync(){ const on = !audio.paused; bars.classList.toggle('playing', on); text.textContent = on ? '音乐播放中' : '开启音乐'; button.setAttribute('aria-label', on ? '关闭背景音乐' : '开启背景音乐'); }
+      function start(){ audio.play().then(sync).catch(sync); }
+      function stop(){ audio.pause(); sync(); }
+      audio.addEventListener('play', sync); audio.addEventListener('pause', sync); audio.addEventListener('ended', sync); button.addEventListener('click',()=>audio.paused?start():stop()); window.addEventListener('load', start); start();
     </script>
   </body>
 </html>

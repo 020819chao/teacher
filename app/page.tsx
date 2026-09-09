@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const paragraphs = [
   <>一直都非常感激您没有嫌弃我的学历，愿意收下我，我也很庆幸能够成为您的学生。</>,
@@ -23,51 +23,36 @@ function MusicIcon({ playing }: { playing: boolean }) {
 
 export default function Home() {
   const [playing, setPlaying] = useState(false);
-  const audioContext = useRef<AudioContext | null>(null);
-  const timer = useRef<number | null>(null);
+  const audio = useRef<HTMLAudioElement | null>(null);
 
-  const stopMusic = () => {
-    if (timer.current) window.clearTimeout(timer.current);
-    timer.current = null;
-    audioContext.current?.close();
-    audioContext.current = null;
-    setPlaying(false);
-  };
-
-  const playMusic = () => {
-    const AudioContextClass = window.AudioContext ||
-      (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
-    if (!AudioContextClass) return;
-    const context = new AudioContextClass();
-    audioContext.current = context;
-    setPlaying(true);
-
-    const melody = [261.63, 329.63, 392, 523.25, 392, 329.63, 293.66, 392];
-    let index = 0;
-    const playNote = () => {
-      if (context.state === 'closed') return;
-      const now = context.currentTime;
-      const oscillator = context.createOscillator();
-      const gain = context.createGain();
-      oscillator.type = 'sine';
-      oscillator.frequency.value = melody[index % melody.length];
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.035, now + 0.12);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
-      oscillator.connect(gain).connect(context.destination);
-      oscillator.start(now);
-      oscillator.stop(now + 2.25);
-      index += 1;
-      timer.current = window.setTimeout(playNote, 1600);
+  useEffect(() => {
+    const element = audio.current;
+    if (!element) return;
+    element.volume = 0.12;
+    const syncPlaying = () => setPlaying(!element.paused);
+    element.addEventListener('play', syncPlaying);
+    element.addEventListener('pause', syncPlaying);
+    element.addEventListener('ended', syncPlaying);
+    element.play().catch(() => setPlaying(false));
+    return () => {
+      element.pause();
+      element.removeEventListener('play', syncPlaying);
+      element.removeEventListener('pause', syncPlaying);
+      element.removeEventListener('ended', syncPlaying);
     };
-    playNote();
-  };
+  }, []);
 
-  const toggleMusic = () => {
+  const toggleMusic = async () => {
+    const element = audio.current;
+    if (!element) return;
     if (playing) {
-      stopMusic();
+      element.pause();
     } else {
-      playMusic();
+      try {
+        await element.play();
+      } catch {
+        setPlaying(false);
+      }
     }
   };
 
@@ -83,6 +68,7 @@ export default function Home() {
         <MusicIcon playing={playing} />
         <span>{playing ? '音乐播放中' : '开启音乐'}</span>
       </button>
+      <audio ref={audio} src="/una-mattina.mp3" autoPlay loop preload="auto" aria-label="Una Mattina 背景音乐" />
 
       <div className="page-stamp" aria-hidden="true">
         <span>TEACHER'S DAY</span>
