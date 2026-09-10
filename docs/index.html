@@ -11,7 +11,7 @@
       body { margin:0; color:var(--ink); background:var(--paper); font-family:"Noto Serif SC","Songti SC","STSong",Georgia,serif; }
       .page { position:relative; min-height:100vh; overflow:hidden; padding:5.7rem 1.35rem 3rem; background:radial-gradient(circle at 77% 5%,rgba(244,188,69,.29),transparent 26rem),radial-gradient(circle at 8% 88%,rgba(229,127,74,.17),transparent 28rem),linear-gradient(135deg,rgba(255,255,255,.24),transparent 48%),var(--paper); }
       .page:after { content:""; position:absolute; inset:0; pointer-events:none; opacity:.18; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E"); mix-blend-mode:multiply; }
-      .music { position:absolute; z-index:3; top:1.4rem; right:clamp(1.25rem,5vw,4.5rem); display:flex; align-items:center; gap:.55rem; border:1px solid var(--line); border-radius:999px; padding:.6rem .85rem .6rem .7rem; color:var(--muted); background:rgba(255,255,255,.5); cursor:pointer; font:.75rem/1 "Microsoft YaHei",sans-serif; letter-spacing:.08em; }
+      .music { position:absolute; z-index:3; top:1.4rem; right:clamp(1.25rem,5vw,4.5rem); display:flex; align-items:center; gap:.55rem; border:1px solid var(--line); border-radius:999px; padding:.6rem .85rem .6rem .7rem; color:var(--muted); background:rgba(255,255,255,.5); cursor:pointer; font:.75rem/1 "Microsoft YaHei",sans-serif; letter-spacing:.08em; }.music-entry{position:fixed;inset:0;z-index:10;display:grid;place-content:center;gap:.7rem;border:0;color:var(--paper);background:rgba(75,51,38,.32);backdrop-filter:blur(5px);cursor:pointer;text-align:center}.music-entry[hidden]{display:none}.music-entry span{display:block;padding:.9rem 1.4rem;border:1px solid rgba(255,245,228,.62);background:rgba(75,51,38,.42);font-size:1.05rem;letter-spacing:.16em}.music-entry small{display:block;color:rgba(255,245,228,.82);font:.78rem/1.5 "Microsoft YaHei",sans-serif;letter-spacing:.1em}
       .bars { display:flex; align-items:end; gap:2px; width:16px; height:14px; } .bars i { width:2px; height:7px; border-radius:4px; background:currentColor; } .bars i:nth-child(2){height:11px}.bars i:nth-child(3){height:14px}.bars i:nth-child(4){height:8px}.playing i{animation:eq .8s ease-in-out infinite alternate}.playing i:nth-child(2){animation-delay:-.35s}.playing i:nth-child(3){animation-delay:-.6s}.playing i:nth-child(4){animation-delay:-.2s}
       .flower { position:absolute; z-index:0; width:clamp(12rem,22vw,19rem); pointer-events:none; mix-blend-mode:screen; filter:saturate(1.08) brightness(1.05); opacity:.92; animation:sway 10s ease-in-out infinite; } .flower.left{left:clamp(-5rem,-2vw,-1.2rem);bottom:4%;transform:rotate(-12deg)} .flower.right{right:clamp(-7rem,-4vw,-2rem);top:11%;width:clamp(10rem,17vw,15rem);transform:rotate(18deg) scale(.76);opacity:.63;animation-delay:-4s}
       .stamp { position:absolute; left:clamp(1.25rem,4vw,3.6rem); top:50%; z-index:1; display:flex; flex-direction:column; align-items:center; gap:.85rem; color:rgba(148,117,94,.72); transform:translateY(-50%); } .stamp span{writing-mode:vertical-rl;font:.58rem/1 "Microsoft YaHei",sans-serif;letter-spacing:.19em}.stamp strong{color:var(--accent);font:500 1rem/1.05 Georgia,serif;text-align:center}
@@ -29,7 +29,7 @@
   <body>
     <main class="page">
       <img class="flower left" src="sunflowers.png" alt="" aria-hidden="true" /><img class="flower right" src="sunflowers.png" alt="" aria-hidden="true" />
-      <button class="music" id="music" type="button" aria-label="开启背景音乐"><span class="bars"><i></i><i></i><i></i><i></i></span><span id="musicText">开启音乐</span></button><audio id="audio" src="una-mattina.mp3" autoplay loop preload="auto"></audio>
+      <button class="music" id="music" type="button" aria-label="开启背景音乐"><span class="bars"><i></i><i></i><i></i><i></i></span><span id="musicText">开启音乐</span></button><button class="music-entry" id="musicEntry" type="button" hidden><span>轻触进入祝福</span><small>点击开启背景音乐</small></button><audio id="audio" src="una-mattina.mp3" autoplay loop preload="auto"></audio>
       <div class="stamp" aria-hidden="true"><span>TEACHER'S DAY</span><strong>09<br>10</strong></div>
       <section class="card" aria-labelledby="title">
         <span class="corner one" aria-hidden="true">✦</span><span class="corner two" aria-hidden="true">✦</span>
@@ -48,12 +48,12 @@
       </section>
     </main>
     <script>
-      const button = document.querySelector('#music'); const text = document.querySelector('#musicText'); const bars = document.querySelector('.bars'); const audio = document.querySelector('#audio'); audio.volume = .3;
-      function sync(){ const on = !audio.paused; bars.classList.toggle('playing', on); text.textContent = on ? '音乐播放中' : '开启音乐'; button.setAttribute('aria-label', on ? '关闭背景音乐' : '开启背景音乐'); }
+      const button = document.querySelector('#music'); const entry = document.querySelector('#musicEntry'); const text = document.querySelector('#musicText'); const bars = document.querySelector('.bars'); const audio = document.querySelector('#audio'); audio.volume = .9;
+      function sync(){ const on = !audio.paused; bars.classList.toggle('playing', on); text.textContent = on ? '音乐播放中' : '开启音乐'; button.setAttribute('aria-label', on ? '关闭背景音乐' : '开启背景音乐'); entry.hidden = on; }
       function start(){ if(!audio.paused){sync();return;} audio.play().then(sync).catch(sync); }
       function stop(){ audio.pause(); sync(); }
-      function resumeFromInteraction(event){ if(button.contains(event.target)) return; start(); }
-      audio.addEventListener('play', sync); audio.addEventListener('pause', sync); audio.addEventListener('ended', sync); audio.addEventListener('loadedmetadata', start); audio.addEventListener('canplay', start); button.addEventListener('click',()=>audio.paused?start():stop()); document.addEventListener('pointerdown', resumeFromInteraction, {once:true}); document.addEventListener('keydown', resumeFromInteraction, {once:true}); window.addEventListener('load', start); start();
+      function resumeFromInteraction(event){ if(button.contains(event.target) || entry.contains(event.target)) return; start(); }
+      audio.addEventListener('play', sync); audio.addEventListener('pause', sync); audio.addEventListener('ended', sync); audio.addEventListener('loadedmetadata', start); audio.addEventListener('canplay', start); button.addEventListener('click',()=>audio.paused?start():stop()); entry.addEventListener('click', start); document.addEventListener('pointerdown', resumeFromInteraction, {once:true}); document.addEventListener('keydown', resumeFromInteraction, {once:true}); window.addEventListener('load', start); start();
     </script>
   </body>
 </html>

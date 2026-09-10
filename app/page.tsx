@@ -23,13 +23,18 @@ function MusicIcon({ playing }: { playing: boolean }) {
 
 export default function Home() {
   const [playing, setPlaying] = useState(false);
+  const [needsStart, setNeedsStart] = useState(false);
   const audio = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     const element = audio.current;
     if (!element) return;
-    element.volume = 0.3;
-    const syncPlaying = () => setPlaying(!element.paused);
+    element.volume = 0.9;
+    const syncPlaying = () => {
+      const on = !element.paused;
+      setPlaying(on);
+      if (on) setNeedsStart(false);
+    };
     const tryAutoplay = () => {
       if (!element.paused) return;
       element.play().then(syncPlaying).catch(() => setPlaying(false));
@@ -37,7 +42,10 @@ export default function Home() {
     const resumeFromInteraction = (event: Event) => {
       const button = document.querySelector('.music-control');
       if (button?.contains(event.target as Node)) return;
-      element.play().catch(() => setPlaying(false));
+      element.play().catch(() => {
+        setPlaying(false);
+        setNeedsStart(true);
+      });
     };
     element.addEventListener('play', syncPlaying);
     element.addEventListener('pause', syncPlaying);
@@ -69,6 +77,7 @@ export default function Home() {
         await element.play();
       } catch {
         setPlaying(false);
+        setNeedsStart(true);
       }
     }
   };
@@ -85,6 +94,12 @@ export default function Home() {
         <MusicIcon playing={playing} />
         <span>{playing ? '音乐播放中' : '开启音乐'}</span>
       </button>
+      {needsStart && (
+        <button className="music-entry" type="button" onClick={toggleMusic}>
+          <span>轻触进入祝福</span>
+          <small>点击开启背景音乐</small>
+        </button>
+      )}
       <audio ref={audio} src="/una-mattina.mp3" autoPlay loop preload="auto" aria-label="Una Mattina 背景音乐" />
 
       <div className="page-stamp" aria-hidden="true">
